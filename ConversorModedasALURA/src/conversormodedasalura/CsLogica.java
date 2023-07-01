@@ -23,6 +23,8 @@ public class CsLogica {
             case "Conversor de monedas":
                 double total = convertirMoneda(valorInsertado); // se hace la operacion matematica segun sea la moneda
                 JOptionPane.showMessageDialog(null, "Tienes: " + tipoMonedaElegida + total);
+
+                salir();
                 break;
         }
 
@@ -40,20 +42,17 @@ public class CsLogica {
             conversorSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Elegir opción", JOptionPane.QUESTION_MESSAGE, null, tipoConversor, tipoConversor[0]);
 
-            if (conversorSeleccionado == "") {
-                JOptionPane.showMessageDialog(null, "Debe elejir una opción..");
-            }
             if (conversorSeleccionado == null) {
                 // Si el usuario hace clic en Cancelar o cierra el cuadro de diálogo
                 salir();
             }
 
-            if (conversorSeleccionado.trim().isEmpty()) {
+            if (conversorSeleccionado.isEmpty()) {
                 // Si el usuario ingresó una cadena vacía o solo espacios en blanco
-                System.out.println("Debe digitar algún valor");
+                JOptionPane.showMessageDialog(null, "Debe elejir alguna opción");
             }
 
-        } while (conversorSeleccionado == "");
+        } while (conversorSeleccionado.isEmpty());
 
         return conversorSeleccionado;
     }
@@ -71,13 +70,18 @@ public class CsLogica {
                 // Si el usuario ingresó una cadena vacía o solo espacios en blanco
                 JOptionPane.showMessageDialog(null, "Debe digitar algún valor");
             } else {
-                valorInsertado = Double.parseDouble(input);
-            }
-            if (valorInsertado <= 0 || valorInsertado > Double.MAX_VALUE) {
+                if (!input.matches("\\d+")) {
+                    JOptionPane.showMessageDialog(null, "Solo valores númericos");
+                } else {
+                    valorInsertado = Double.parseDouble(input);
+                    if (valorInsertado <= 0 || valorInsertado > Double.MAX_VALUE) {
 
-                JOptionPane.showMessageDialog(null, "Valores a convertir deben ser mayores a 0 y menores a " + Double.MAX_VALUE + ".");
+                        JOptionPane.showMessageDialog(null, "Valores a convertir deben ser mayores a 0 y menores a " + Double.MAX_VALUE + ".");
+                    }
+                }
             }
-        } while (input == null || input.trim().isEmpty() || valorInsertado <= 0 || valorInsertado > Double.MAX_VALUE);
+
+        } while (!input.matches("\\d+") || input == null || input.trim().isEmpty() || valorInsertado <= 0 || valorInsertado > Double.MAX_VALUE);
     }
 
     public double convertirMoneda(double valorInsertado) {
@@ -106,6 +110,27 @@ public class CsLogica {
                 tipoMonedaElegida = "₩ ";
                 break;
 
+            case "Convertir de Dolares a colones":
+                monto = valorInsertado / 0.0018;
+                tipoMonedaElegida = "₡ ";
+                break;
+            case "Convertir de Euros a colones":
+                monto = valorInsertado / 0.0017;
+                tipoMonedaElegida = "₡ ";
+                break;
+            case "Convertir de Libras Esterlinas a colones":
+                monto = valorInsertado / 0.0015;
+                tipoMonedaElegida = "₡ ";
+                break;
+            case "Convertir de Yen Japonés a colones":
+                monto = valorInsertado / 0.27;
+                tipoMonedaElegida = "₡ ";
+                break;
+            case "Convertir de Won sul-coreano a colones":
+                monto = valorInsertado / 2.43;
+                tipoMonedaElegida = "₡ ";
+                break;
+
         }
 
         /*DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -118,18 +143,21 @@ public class CsLogica {
 
     public String selectTipoMoneda() {
         String[] opcionesMoneda = {"", "Convertir de Colones a Dolar", "Convertir de Colones a Euros", "Convertir de Colones a Libras Esterlinas",
-            "Convertir de Colones a Yen Japonés", "Convertir de Colones a Won sul-coreano"};
+            "Convertir de Colones a Yen Japonés", "Convertir de Colones a Won sul-coreano"," ","Convertir de Dolares a colones",
+            "Convertir de Euros a colones", "Convertir de Libras Esterlinas a colones",
+            "Convertir de Yen Japonés a colones", "Convertir de Won sul-coreano a colones"
+        };
 
         String monedaSelect;
 
-        // Opciones disponibles para que el usuario elija
-        //String[] opcionesMoneda = {"", "Convertir de Euros a  colones", "Convertir de Libras Esterlinas a  colones",
-        //  "Convertir de Yen Japonés a  colones", "Convertir de Won sul-coreano a  colones"};
         do {
             // Mostrar un cuadro de diálogo con las opciones y obtener la opción seleccionada
             monedaSelect = (String) JOptionPane.showInputDialog(null, "Seleccione una moneda:",
                     "Elegir opción", JOptionPane.QUESTION_MESSAGE, null, opcionesMoneda, opcionesMoneda[0]);
 
+            if (monedaSelect == null) {
+                salir();
+            }
             if (monedaSelect.trim().isEmpty()) {
                 // Si el usuario ingresó una cadena vacía o solo espacios en blanco
                 JOptionPane.showMessageDialog(null, "Debe elegir alguna moneda");
@@ -145,8 +173,10 @@ public class CsLogica {
                 "Confirmar", JOptionPane.YES_NO_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {
-            System.out.println("Saliendo del programa...");
+
+            JOptionPane.showMessageDialog(null, "Saliendo del programa...");
             System.exit(0);  // Cierra el programa
+
         } else {
             elejirConversor();
         }

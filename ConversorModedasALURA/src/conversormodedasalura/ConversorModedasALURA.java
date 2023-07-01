@@ -19,12 +19,12 @@ public class ConversorModedasALURA {
      */
     public static void main(String[] args) {
         int deseaSeguir = -1;
-
+ 
         CsLogica logica = new CsLogica();
         do{
             logica.elejirConversor();
             deseaSeguir = JOptionPane.showConfirmDialog(null, "¿Deseas realizar otra conversión?",
-                    "Confirmar", JOptionPane.YES_NO_CANCEL_OPTION);
+                    "Alerta",JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
             
             
         }while (deseaSeguir == 0); 
