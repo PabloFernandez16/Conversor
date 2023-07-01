@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conversormodedasalura;
+package conversoralura;
 
 import java.awt.*;
 import javax.swing.JDialog;
@@ -27,7 +27,6 @@ public class DialogPersonalizado {
         UIManager.put("OptionPane.font", font);
         UIManager.put("List.font", font);
         UIManager.put("ComboBox.font", font);
-        UIManager.put("messageAreaBorder.font", font);
         
         // Establecer el tamaño de fuente para los botones del JOptionPane
         Font buttonFont = UIManager.getFont("Button.font").deriveFont(Font.CENTER_BASELINE, 18f);

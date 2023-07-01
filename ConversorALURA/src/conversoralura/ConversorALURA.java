@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conversormodedasalura;
+package conversoralura;
 
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showInputDialog;
@@ -12,7 +12,7 @@ import static javax.swing.JOptionPane.showInputDialog;
  *
  * @author Pablo
  */
-public class ConversorModedasALURA {
+public class ConversorALURA {
 
     /**
      * @param args the command line arguments
@@ -21,9 +21,10 @@ public class ConversorModedasALURA {
 
         CsLogica logica = new CsLogica();
         DialogPersonalizado dialog = new DialogPersonalizado();
+        
         dialog.dialogo();
-
-            logica.elegirConversor();
+        logica.elegirConversor();
+        
     }
 
 }

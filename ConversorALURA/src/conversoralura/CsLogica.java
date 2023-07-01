@@ -1,4 +1,4 @@
-package conversormodedasalura;
+package conversoralura;
 
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
@@ -245,14 +245,14 @@ public class CsLogica {
 
         } else {
             elegirConversor();
-        }
+        }   
     }
 
     private boolean validacionesBasicas(String dato) {
 
         if (dato == null) {
+            System.out.println("Programa cerrado...");
             salir();
-
         }
         if (dato.trim().isEmpty()) {
             // Si el usuario ingresó una cadena vacía o solo espacios en blanco
